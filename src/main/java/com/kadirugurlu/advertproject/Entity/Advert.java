@@ -29,6 +29,11 @@ public class Advert {
     @JsonBackReference
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @JsonBackReference
+    private Category category;
+
     @OneToMany(mappedBy = "advert", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<AdvertField> advertField;
@@ -36,4 +41,12 @@ public class Advert {
     @OneToMany(mappedBy = "advert", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<AdvertComment> advertComments;
+
+    @ManyToMany
+    @JoinTable(
+            name = "group_adverts",
+            joinColumns = @JoinColumn(name = "advert_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id")
+    )
+    private List<Group> groups;
 }

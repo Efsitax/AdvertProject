@@ -4,7 +4,6 @@ import com.kadirugurlu.advertproject.Entity.User;
 import com.kadirugurlu.advertproject.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,17 +20,29 @@ public class UserService implements BaseService<User>{
 
     @Override
     public Optional<User> read(Long id) {
-        return Optional.empty();
+        return userRepository.findById(id);
     }
 
     @Override
-    public User update(User entity) {
+    public User update(User entity, Long id) {
+        User user = read(id).orElse(null);
+
+        if(user != null) {
+            user.setName(entity.getName());
+            user.setSurname(entity.getSurname());
+            user.setPhone(entity.getPhone());
+            user.setAddress(entity.getAddress());
+            user.setBirthdate(entity.getBirthdate());
+            user.setEmail(entity.getEmail());
+            return userRepository.save(user);
+        }
+
         return null;
     }
 
     @Override
     public void delete(Long id) {
-
+        read(id).ifPresent(userRepository::delete);
     }
 
     @Override

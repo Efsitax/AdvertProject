@@ -9,7 +9,7 @@ public interface BaseService<T> {
 
     Optional<T> read(Long id);
 
-    T update(T entity);
+    T update(T entity, Long id);
 
     void delete(Long id);
 
