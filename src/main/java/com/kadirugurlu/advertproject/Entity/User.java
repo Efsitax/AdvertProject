@@ -13,6 +13,11 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
+    public User() {
+        this.adverts = new java.util.ArrayList<>();
+        this.advertComments = new java.util.ArrayList<>();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,4 +50,8 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonBackReference
     private Group group;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<AdvertComment> advertComments;
 }

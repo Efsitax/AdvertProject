@@ -13,6 +13,7 @@ import java.util.Optional;
 public class GroupService implements BaseService<Group>{
 
     private final GroupRepository groupRepository;
+    private final AdvertService advertService;
 
     @Override
     public Group create(Group entity) {
@@ -47,4 +48,13 @@ public class GroupService implements BaseService<Group>{
     public List<Group> getAll() {
         return groupRepository.findAll();
     }
+
+    public List<Group> getByAdvertId(Long advertId) {
+        return groupRepository.findByAdvertsId(advertId);
+    }
+
+    public Optional<Group> getByName(String name) {
+        return groupRepository.findByName(name);
+    }
+
 }

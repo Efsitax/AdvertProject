@@ -49,4 +49,5 @@ public class UserService implements BaseService<User>{
     public List<User> getAll() {
         return userRepository.findAll();
     }
+
 }

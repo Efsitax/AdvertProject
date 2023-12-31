@@ -45,6 +45,18 @@ public class AdvertService implements BaseService<Advert>{
 
     @Override
     public List<Advert> getAll() {
-        return null;
+        return advertRepository.findAll();
+    }
+
+    public List<Advert> getByCategoryId(Long categoryId) {
+        return advertRepository.findByCategoryId(categoryId);
+    }
+
+    public List<Advert> getByUserId(Long userId) {
+        return advertRepository.findByUserId(userId);
+    }
+
+    public List<Advert> getByGroupId(Long groupId) {
+        return advertRepository.findByGroupsId(groupId);
     }
 }

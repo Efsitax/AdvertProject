@@ -45,4 +45,8 @@ public class CategoryService implements BaseService<Category> {
     public List<Category> getAll() {
         return categoryRepository.findAll();
     }
+
+    public Optional<Category> getByName(String name) {
+        return categoryRepository.findByName(name);
+    }
 }

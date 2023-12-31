@@ -18,6 +18,11 @@ public class AdvertComment {
     @JsonBackReference
     private Advert advert;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonBackReference
+    private User user;
+
     @Column(length = 50)
     private String title;
 

@@ -5,12 +5,20 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
 @Table(name = "adverts")
 public class Advert {
+
+    public Advert() {
+        this.groups = new ArrayList<>();
+        this.advertField = new ArrayList<>();
+        this.advertComments = new ArrayList<>();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +31,9 @@ public class Advert {
     private String description;
 
     private double price;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

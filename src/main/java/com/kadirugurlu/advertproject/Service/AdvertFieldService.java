@@ -39,11 +39,15 @@ public class AdvertFieldService implements BaseService<AdvertField> {
 
     @Override
     public void delete(Long id) {
-
+        read(id).ifPresent(advertFieldRepository::delete);
     }
 
     @Override
     public List<AdvertField> getAll() {
         return null;
+    }
+
+    public List<AdvertField> getByAdvertId(Long advertId) {
+        return advertFieldRepository.findByAdvertId(advertId);
     }
 }

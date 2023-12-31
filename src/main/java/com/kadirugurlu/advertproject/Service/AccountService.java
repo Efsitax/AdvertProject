@@ -46,4 +46,8 @@ public class AccountService implements BaseService<Account> {
     public List<Account> getAll() {
         return accountRepository.findAll();
     }
+
+    public Optional<Account> findByUsername(String username){
+        return accountRepository.findByUsername(username);
+    }
 }

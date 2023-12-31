@@ -1,7 +1,6 @@
 package com.kadirugurlu.advertproject.Service;
 
 import com.kadirugurlu.advertproject.Entity.AdvertComment;
-import com.kadirugurlu.advertproject.Entity.Category;
 import com.kadirugurlu.advertproject.Repository.AdvertCommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,12 +26,12 @@ public class AdvertCommentService implements BaseService<AdvertComment>{
 
     @Override
     public AdvertComment update(AdvertComment entity, Long id) {
-        AdvertComment advertComment = read(id).orElse(null);
+        AdvertComment comment = read(id).orElse(null);
 
-        if(advertComment != null) {
-            advertComment.setComment(entity.getComment());
-            advertComment.setTitle(entity.getTitle());
-            return advertCommentRepository.save(advertComment);
+        if(comment != null) {
+            comment.setComment(entity.getComment());
+            comment.setTitle(entity.getTitle());
+            return advertCommentRepository.save(comment);
         }
 
         return null;
@@ -46,5 +45,9 @@ public class AdvertCommentService implements BaseService<AdvertComment>{
     @Override
     public List<AdvertComment> getAll() {
         return advertCommentRepository.findAll();
+    }
+
+    public List<AdvertComment> getByAdvertId(Long advertId) {
+        return advertCommentRepository.findByAdvertId(advertId);
     }
 }
